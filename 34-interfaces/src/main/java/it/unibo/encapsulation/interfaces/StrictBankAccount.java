@@ -19,6 +19,14 @@ public class StrictBankAccount implements BankAccount {
         return id;
     }
 
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public int getTransactionsCount() {
+        return this.transactions;
+    }
+
     public void withdraw(final int id, final double amount) {
         if (this.id != id) {
             return;
@@ -65,14 +73,6 @@ public class StrictBankAccount implements BankAccount {
 
     public void chargeManagementFees(final int id) {
         this.balance = this.balance - MANAGEMENT_FEE - PER_TRANSACTION_FEE * this.transactions;
-    }
-
-    public double getBalance() {
-        return this.balance;
-    }
-
-    public int getTransactionsCount() {
-        return this.transactions;
     }
     
 }
