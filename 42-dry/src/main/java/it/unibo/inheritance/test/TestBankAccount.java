@@ -18,7 +18,7 @@ public class TestBankAccount {
         if (first.equals(second)) {
             System.out.println("# CORRECT: " + what + " " + first + " is equal to " + what + " " + second);
         } else {
-            final var error = "# ERROR: " + what + " " + first + " is not equal to " + what + " " + second + " #";
+            final var error = "# ERROR: " + what + " " + first + " is NOT equal to " + what + " " + second + " #";
             final var decorationBuilder = new StringBuilder(error.length());
             for (int i = 0; i < error.length(); i++) {
                 decorationBuilder.append("#");
@@ -63,9 +63,7 @@ public class TestBankAccount {
         bianchisAccount.withdraw(aBianchi.getUserID(), WITHDRAW_AMOUNT);
         requireSameAmount(rossisAccount, bianchisAccount);
         // Management fees
-        System.out.println(rossisAccount.getBalance());
         rossisAccount.chargeManagementFees(aRossi.getUserID());
-        System.out.println(rossisAccount.getBalance());
         bianchisAccount.chargeManagementFees(aBianchi.getUserID());
         requireSameAmount(rossisAccount, bianchisAccount);
     }

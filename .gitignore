@@ -1,2 +1,8 @@
-# ignore all files in bin 
+# ignore all files in bin
 bin/
+
+#ignore all files in build
+build/
+
+# ignore all files in .gradle
+.gradle/
