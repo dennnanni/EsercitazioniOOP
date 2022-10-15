@@ -23,7 +23,6 @@ public class SimpleBankAccount implements BankAccount {
          */
         if (checkUser(id)) {
             this.balance -= SimpleBankAccount.MANAGEMENT_FEE;
-            System.out.println("bro");
         }
     }
 
