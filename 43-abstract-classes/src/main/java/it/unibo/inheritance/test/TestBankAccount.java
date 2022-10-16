@@ -10,7 +10,7 @@ import it.unibo.inheritance.impl.SimpleBankAccount;
 public class TestBankAccount {
     private static final int INTIAL_AMOUNT = 10000;
     private static final int WITHDRAW_AMOUNT = 15000;
-    private static final String ACCOUNT = "'s account balance is ";
+    //private static final String ACCOUNT = "'s account balance is ";
 
     private static int counter = 0;
 

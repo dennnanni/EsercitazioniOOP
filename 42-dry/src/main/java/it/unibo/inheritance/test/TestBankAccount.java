@@ -3,13 +3,12 @@ package it.unibo.inheritance.test;
 import it.unibo.inheritance.api.AccountHolder;
 import it.unibo.inheritance.api.BankAccount;
 import it.unibo.inheritance.impl.ExtendedStrictBankAccount;
-import it.unibo.inheritance.impl.SimpleBankAccount;
 import it.unibo.inheritance.impl.StrictBankAccount;
 
 public class TestBankAccount {
     private static final int INTIAL_AMOUNT = 10000;
     private static final int WITHDRAW_AMOUNT = 15000;
-    private static final String ACCOUNT = "'s account balance is ";
+    //private static final String ACCOUNT = "'s account balance is ";
 
     private TestBankAccount() {
     }

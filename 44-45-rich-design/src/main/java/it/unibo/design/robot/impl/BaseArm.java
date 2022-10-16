@@ -5,10 +5,11 @@ public class BaseArm {
     private static final double CONSUMPTION_PICK_UP = 1;
     private static final double CONSUMPTION_DROP_DOWN = 0.5;
 
+    private final String armName;
     private boolean isGrabbing;
 
-    public BaseArm(final String something) {
-
+    public BaseArm(final String armName) {
+        this.armName = armName;
     }
 
     public boolean isGrabbing() {

@@ -12,8 +12,8 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
 
     public RobotWithTwoArms(final String robotName) {
         super(robotName);
-        this.armDx = new BaseArm(robotName);
-        this.armSx = new BaseArm(robotName);
+        this.armDx = new BaseArm("Right side");
+        this.armSx = new BaseArm("Left side");
         this.carriedItemsCount = 0;
     }
 
