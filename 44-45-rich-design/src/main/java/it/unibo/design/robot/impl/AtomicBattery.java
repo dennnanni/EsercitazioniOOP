@@ -4,16 +4,17 @@ import it.unibo.design.robot.api.RobotPart;
 
 public class AtomicBattery extends RobotPart {
 
-    private static final double POWER_CONSUMPTION = 0.3;
+    private static final double POWER_CONSUMPTION = 0;
 
     public AtomicBattery() {
         super(POWER_CONSUMPTION);
     }
 
-    @Override
     public void doAction() {
-        // TODO Auto-generated method stub
-        
+        getRobot().recharge();
     }
-    
+
+    public String toString() {
+        return "Atomic battery";
+    }
 }

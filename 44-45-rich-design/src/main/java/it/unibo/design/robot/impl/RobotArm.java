@@ -43,5 +43,9 @@ public class RobotArm extends CommandableRobotPart {
     public void sendCommand(final String command) {
         this.commandSent = command;
     }
+
+    public String toString() {
+        return "RobotArm";
+    }
     
 }

@@ -18,6 +18,8 @@ public abstract class ComposableRobot extends BaseRobot {
     public void attachComponent(final RobotPart component) {
         component.connect(this);
 
+        System.out.println(component.toString());
+
         this.components[this.attachedComponentsCount] = component;
         this.attachedComponentsCount++;
     }
@@ -43,7 +45,7 @@ public abstract class ComposableRobot extends BaseRobot {
 
     public void doCycle() {
         for(var component: this.components) {
-            if (component.isTurnedOn() && isBatteryEnough(component.getPowerConsumption())) {
+            if (component != null && component.isTurnedOn() && component.isPlugged() && isBatteryEnough(component.getPowerConsumption())) {
                 component.doAction();
                 consumeBattery(component.getPowerConsumption());
             }

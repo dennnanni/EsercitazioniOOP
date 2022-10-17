@@ -32,11 +32,15 @@ public abstract class RobotPart {
     }
 
     public void disconnect(final ComposableRobot robot) {
-        this.robot = robot;
+        this.robot = null;
     }
 
     public ComposableRobot getRobot() {
         return this.robot;
+    }
+
+    public boolean isPlugged() {
+        return this.robot != null;
     }
 
     public abstract void doAction();
