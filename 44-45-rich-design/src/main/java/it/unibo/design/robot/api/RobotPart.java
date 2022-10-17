@@ -4,12 +4,11 @@ public abstract class RobotPart {
 
     private boolean isOn;
     private final double powerConsumption;
-    private boolean isConnected;
+    private ComposableRobot robot;
 
     public RobotPart(final double powerConsumption) {
         this.powerConsumption = powerConsumption;
         this.isOn = false;
-        this.isConnected = false;
     }
 
     public double getPowerConsumption() {
@@ -28,16 +27,16 @@ public abstract class RobotPart {
         this.isOn = false;
     }
 
-    public boolean isConnected() {
-        return this.isConnected;
+    public void connect(final ComposableRobot robot) {
+        this.robot = robot;
     }
 
-    public void connect() {
-        this.isConnected = true;
+    public void disconnect(final ComposableRobot robot) {
+        this.robot = robot;
     }
 
-    public void disconnect() {
-        this.isConnected = false;
+    public ComposableRobot getRobot() {
+        return this.robot;
     }
 
     public abstract void doAction();

@@ -16,14 +16,14 @@ public abstract class ComposableRobot extends BaseRobot {
     }
 
     public void attachComponent(final RobotPart component) {
-        component.connect();
+        component.connect(this);
 
         this.components[this.attachedComponentsCount] = component;
         this.attachedComponentsCount++;
     }
 
     public void detachComponent(final RobotPart component) {
-        component.disconnect();
+        component.disconnect(this);
 
         boolean deleted = false;
         for (int i = 0; i < attachedComponentsCount; i++) {

@@ -18,7 +18,7 @@ public class RobotArm extends CommandableRobotPart {
     }
 
     public void doAction() {
-        switch (commandSent) {
+        switch (this.commandSent) {
             case COMMAND_PICK_UP:
                 if (!arm.isGrabbing()) {
                     arm.pickUp();
@@ -29,7 +29,11 @@ public class RobotArm extends CommandableRobotPart {
                     arm.dropDown();
                 }
                 break;
+            default:
+                return;
         }
+
+        this.commandSent = null;
     }
 
     public String[] availableCommands() {
