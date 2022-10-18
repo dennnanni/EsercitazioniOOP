@@ -11,3 +11,4 @@ build/
 *.lock
 *.o
 *.probe
+*.properties
