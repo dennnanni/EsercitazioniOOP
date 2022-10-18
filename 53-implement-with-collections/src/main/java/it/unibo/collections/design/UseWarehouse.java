@@ -31,6 +31,7 @@ public final class UseWarehouse {
          * Additionally, LinkedHashSet and HashSet have similar performances:
          * https://www.artima.com/weblogs/viewpost.jsp?thread=122295
          */
+
         /*
          * 2. ProductImpl implements Product. Remember that two products are the
          * same if their name is the same.
@@ -43,7 +44,7 @@ public final class UseWarehouse {
         final Product p1 = null; // new ProductImpl("p1", 100);
         final Product p2 = null; // new ProductImpl("p2", 30);
         final Product p3 = null; // new ProductImpl("p3", 10);
-        final Warehouse warehouse = null; // new WarehouseImpl();
+        final Warehouse warehouse = new WarehouseImpl();
         warehouse.addProduct(p3);
         assertContentEqualsInAnyOrder(Set.of(p3), warehouse.allProducts());
         warehouse.addProduct(p1);
