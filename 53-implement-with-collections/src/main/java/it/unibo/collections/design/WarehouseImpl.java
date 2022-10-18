@@ -17,8 +17,9 @@ public class WarehouseImpl implements Warehouse {
         this.products.add(p);
     }
 
+    @Override
     public Set<String> allNames() {
-        
+        // TODO Auto-generated method stub
         return null;
     }
 
