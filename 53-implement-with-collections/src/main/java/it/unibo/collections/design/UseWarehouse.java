@@ -41,9 +41,9 @@ public final class UseWarehouse {
         /*
          * 3. Fix the construction of objects in this test.
          */
-        final Product p1 = null; // new ProductImpl("p1", 100);
-        final Product p2 = null; // new ProductImpl("p2", 30);
-        final Product p3 = null; // new ProductImpl("p3", 10);
+        final Product p1 = new ProductImpl("p1", 100);
+        final Product p2 = new ProductImpl("p2", 30);
+        final Product p3 = new ProductImpl("p3", 10);
         final Warehouse warehouse = new WarehouseImpl();
         warehouse.addProduct(p3);
         assertContentEqualsInAnyOrder(Set.of(p3), warehouse.allProducts());

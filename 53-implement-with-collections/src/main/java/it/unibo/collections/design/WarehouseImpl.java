@@ -1,11 +1,13 @@
 package it.unibo.collections.design;
 
 import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 import it.unibo.collections.design.api.*;
 
 public class WarehouseImpl implements Warehouse {
+
+    private static final int PRODUCT_NOT_FOUND = -1;
 
     public final LinkedHashSet<Product> products;
 
@@ -17,28 +19,36 @@ public class WarehouseImpl implements Warehouse {
         this.products.add(p);
     }
 
-    @Override
     public Set<String> allNames() {
-        // TODO Auto-generated method stub
-        return null;
+
+        if (this.products.isEmpty()) {
+            return null;
+        }
+
+        final Set<String> names = new TreeSet<>();
+        for (Product p : this.products) {
+            names.add(p.getName());
+        }
+
+        return names;
     }
 
-    @Override
     public Set<Product> allProducts() {
-        // TODO Auto-generated method stub
-        return null;
+        return Set.copyOf(this.products);
     }
 
-    @Override
-    public boolean containsProduct(Product p) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean containsProduct(final Product p) {
+        return this.products.contains(p);
     }
 
-    @Override
-    public double getQuantity(String name) {
-        // TODO Auto-generated method stub
-        return 0;
+    public double getQuantity(final String name) {
+        for (Product p : this.products) {
+            if (p.getName() == name) {
+                return p.getQuantity();
+            }
+        }
+
+        return PRODUCT_NOT_FOUND;
     }
 
 }
