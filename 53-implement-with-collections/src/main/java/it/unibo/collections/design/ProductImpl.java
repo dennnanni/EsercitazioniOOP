@@ -20,4 +20,8 @@ public class ProductImpl implements Product {
         return this.quantity;
     }
 
+    public String toString() {
+        return "Product: { name: " + this.name + ", quantity: " + this.quantity + "}";
+    }
+
 }

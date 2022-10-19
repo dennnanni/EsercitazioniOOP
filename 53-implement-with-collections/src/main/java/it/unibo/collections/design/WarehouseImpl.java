@@ -34,7 +34,12 @@ public class WarehouseImpl implements Warehouse {
     }
 
     public Set<Product> allProducts() {
-        return Set.copyOf(this.products);
+        final Set<Product> allProducts = new LinkedHashSet<>();
+        for (Product p : this.products) {
+            allProducts.add(p);
+        }
+
+        return allProducts;
     }
 
     public boolean containsProduct(final Product p) {
@@ -49,6 +54,10 @@ public class WarehouseImpl implements Warehouse {
         }
 
         return PRODUCT_NOT_FOUND;
+    }
+
+    public String toString() {
+        return "WarehouseImpl [products=" + products + "]";
     }
 
 }
