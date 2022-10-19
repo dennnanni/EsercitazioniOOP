@@ -45,8 +45,6 @@ Changes to be committed:
         new file:   HelloWorld.java
 
 ### Si crei il primo commit, con messaggio ragionevole. Se necessario, si configuri nome utente ed email di git usando i dati dell'account istituzionale.
-git config --global user.name "Denise Nanni"
-git config --global user.email "denise.nanni@studio.unibo.it"
 git commit -m "Aggiunto HelloWorld"
 
 ### Si compili il file Java e si verifichi lo stato del repository
@@ -120,7 +118,7 @@ git log --all --graph
 ### Da questo punto in poi, prima e dopo ogni comando, ci si assicuri di osservare lo stato del repository con `git status`
 
 ### Si crei un file Mistake.java, con contenuto arbitrario, lo si aggiunga al tracker, e si faccia un commit
-touch Mistake.java
+echo "Contenuto arbitrario" >> Mistake.java
 
 On branch main
 Untracked files:
@@ -174,21 +172,38 @@ git checkout experiment
 ### Si crei un file README.md con contenuto a piacere, e si faccia un commit che lo includa
 echo "contenuto a piacere" >> README.md
 git add README.md
+git commit -m "aggiunto readme"
 
 ### Si torni sul branch master e si elenchino i branch disponibili
 git checkout master
-git log --all --oneline
+git branch -a
 
 ### Si unisca il branch experiment al branch master (si faccia un merge in cui experiment viene messo dentro master, e non viceversa)
 git merge experiment
 
 ### Si osservi la storia del repository
-git log --all --oneline
+git log --all --graph
 
-5628438 (HEAD -> main) Merge branch 'experiment'
-bf68eff (experiment) Aggiunto README
-12e19fa ToDelete eliminato
-680d625 Mistake rinominato
-d811e4c Aggiunto .gitattributes e Mistake.java
-77c82cd Aggiunto .gitignore
-cedfee7 Aggiunto HelloWorld
+*   commit 56284380f4af1d157de9b2ec2262da319b4522c2 (HEAD -> main)
+|\  Merge: 12e19fa bf68eff
+| | Author: denise.nanni <denise.nanni1@gmail.com>
+| | Date:   Wed Oct 19 21:56:25 2022 +0200
+| |
+| |     Merge branch 'experiment'
+| |
+| * commit bf68eff21b73878bbde8c26ca002ff499d9abc74 (experiment)
+| | Author: denise.nanni <denise.nanni1@gmail.com>
+| | Date:   Wed Oct 19 21:49:56 2022 +0200
+| |
+| |     Aggiunto README
+| |
+* | commit 12e19fa1d53c2eafcc2c480ea4b1c15946197372
+| | Author: denise.nanni <denise.nanni1@gmail.com>
+| | Date:   Wed Oct 19 21:35:00 2022 +0200
+| |
+| |     ToDelete eliminato
+| |
+* | commit 680d625d95e531106a0a729690407e9c9cb577d9
+| | Author: denise.nanni <denise.nanni1@gmail.com>
+| | Date:   Wed Oct 19 21:34:38 2022 +0200
+| |
