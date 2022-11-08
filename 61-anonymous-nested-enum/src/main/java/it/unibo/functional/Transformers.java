@@ -54,7 +54,14 @@ public final class Transformers {
      * @param <O> output elements type
      */
     public static <I, O> List<O> transform(final Iterable<I> base, final Function<I, O> transformer) {
-        return null;
+        final Function<I, List<O>> function = new Function<I,List<O>>() {
+            public List<O> call(I input) {
+                return List.of(transformer.call(input));
+            }
+            
+        };
+
+        return flattenTransform(base, function);
     }
 
     /**
@@ -70,7 +77,7 @@ public final class Transformers {
      * @param <I> type of the collection elements
      */
     public static <I> List<? extends I> flatten(final Iterable<? extends Collection<? extends I>> base) {
-        return null;
+        return flattenTransform(base, Function.identity());
     }
 
     /**
@@ -87,7 +94,14 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> select(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        return flattenTransform(base, new Function<I,Collection<? extends I>>() {
+            public Collection<? extends I> call(I input) {
+                if (test.call(input)) {
+                    return List.of(input);
+                }
+                return new ArrayList<>();
+            }
+        });
     }
 
     /**
@@ -103,6 +117,15 @@ public final class Transformers {
      * @param <I> elements type
      */
     public static <I> List<I> reject(final Iterable<I> base, final Function<I, Boolean> test) {
-        return null;
+        return flattenTransform(base, new Function<I,Collection<? extends I>>() {
+            public Collection<? extends I> call(I input) {
+                if (!test.call(input)) {
+                    return List.of(input);
+                }
+
+                return new ArrayList<>();
+            }
+            
+        });
     }
 }

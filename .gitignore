@@ -1,0 +1,13 @@
+# directories to ignore
+bin/
+build/
+.gradle/
+
+# files to ignore
+*.log
+*.bin
+*.class
+*.tmp
+*.lock
+*.o
+*.probe
