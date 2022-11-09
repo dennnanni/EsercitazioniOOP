@@ -1,5 +1,6 @@
 package it.unibo.nestedenum;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
@@ -30,10 +31,17 @@ public final class MonthSorterNested implements MonthSorter {
         }
 
         public static Month fromString(final String value) {
+            int counter = 0;
+            Month match = null;
             for (Month month : Month.values()) {
-                if (month.name().startsWith(value.toUpperCase())) {
-                    return month;
+                if (month.toString().startsWith(value.toUpperCase())) {
+                    counter++;
+                    match = month;
                 }
+            }
+
+            if (counter == 1) {
+                return match;
             }
 
             throw new IllegalArgumentException();
@@ -51,6 +59,15 @@ public final class MonthSorterNested implements MonthSorter {
 
     @Override
     public Comparator<String> sortByOrder() {
-        return null;
+        return new Comparator<String>() {
+
+            public int compare(String o1, String o2) {
+                final Month m1 = Month.fromString(o1);
+                final Month m2 = Month.fromString(o2);
+
+                return m1.compareTo(m2);
+            }
+            
+        };
     }
 }
