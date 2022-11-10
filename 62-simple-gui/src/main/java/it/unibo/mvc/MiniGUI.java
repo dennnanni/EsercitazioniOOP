@@ -37,9 +37,6 @@ public class MiniGUI {
         canvas.add(write, BorderLayout.SOUTH);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        /*
-         * Handlers
-         */
 
         final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
@@ -56,6 +53,10 @@ public class MiniGUI {
         pnlResult.add(textField, BorderLayout.NORTH);
 
         canvas.add(pnlResult, BorderLayout.NORTH);
+
+        /*
+        * Handlers
+        */
 
         write.addActionListener(new ActionListener() {
             @Override
