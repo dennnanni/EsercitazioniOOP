@@ -40,24 +40,31 @@ public class MiniGUI {
         /*
          * Handlers
          */
-        write.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                System.out.println(randomGenerator.nextInt());
-            }
-        });
 
         final JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         canvas.add(panel, BorderLayout.CENTER);
         panel.add(write);
+
         final JPanel pnlResult = new JPanel();
         pnlResult.setLayout(new BoxLayout(pnlResult, BoxLayout.Y_AXIS));
+
         final JLabel label = new JLabel("Result");
         final JTextField textField = new JTextField();
+
         pnlResult.add(label, BorderLayout.NORTH);
         pnlResult.add(textField, BorderLayout.NORTH);
+
         canvas.add(pnlResult, BorderLayout.NORTH);
+
+        write.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                final Integer randomVal = randomGenerator.nextInt();
+                textField.setText(randomVal.toString());
+                System.out.println(randomVal);
+            }
+        });
 
     }
 
