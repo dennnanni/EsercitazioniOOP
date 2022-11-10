@@ -97,19 +97,40 @@ public final class DrawNumberSwingView implements DrawNumberView {
 
     @Override
     public void result(final DrawResult res) {
+        // switch (res) {
+        //     case YOURS_HIGH, YOURS_LOW -> {
+        //         plainMessage(res.getDescription());
+        //         return;
+        //     }
+        //     case YOU_WON -> plainMessage(res.getDescription() + NEW_GAME);
+        //     case YOU_LOST -> showMessageDialog(
+        //         frame,
+        //         res.getDescription() + NEW_GAME, "Lost",
+        //         JOptionPane.WARNING_MESSAGE
+        //     );
+        //     default -> throw new IllegalStateException("Unknown game state");
+        // }
+
         switch (res) {
-            case YOURS_HIGH, YOURS_LOW -> {
+            case YOURS_HIGH:
+            case YOURS_LOW:
+            {
                 plainMessage(res.getDescription());
                 return;
             }
-            case YOU_WON -> plainMessage(res.getDescription() + NEW_GAME);
-            case YOU_LOST -> showMessageDialog(
-                frame,
-                res.getDescription() + NEW_GAME, "Lost",
-                JOptionPane.WARNING_MESSAGE
-            );
-            default -> throw new IllegalStateException("Unknown game state");
+            case YOU_WON: 
+                plainMessage(res.getDescription() + NEW_GAME);
+                break;
+            case YOU_LOST:
+                showMessageDialog(
+                    frame,
+                    res.getDescription() + NEW_GAME, "Lost",
+                    JOptionPane.WARNING_MESSAGE
+                );
+                break;
+            default: throw new IllegalStateException("Unknown game state");
         }
+
         controller.resetGame();
     }
 
