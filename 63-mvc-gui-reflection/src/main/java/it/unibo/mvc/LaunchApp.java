@@ -1,14 +1,19 @@
 package it.unibo.mvc;
 
+import it.unibo.mvc.api.DrawNumber;
 import it.unibo.mvc.api.DrawNumberController;
+import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.controller.DrawNumberControllerImpl;
 import it.unibo.mvc.model.DrawNumberImpl;
+import it.unibo.mvc.view.DrawNumberCommandLine;
 import it.unibo.mvc.view.DrawNumberSwingView;
 
 /**
  * Application entry-point.
  */
 public final class LaunchApp {
+
+    private static final int VIEWS_COUNT_PER_TYPE = 3;
 
     private LaunchApp() { }
 
@@ -27,5 +32,7 @@ public final class LaunchApp {
         final var model = new DrawNumberImpl();
         final DrawNumberController app = new DrawNumberControllerImpl(model);
         app.addView(new DrawNumberSwingView());
+        app.addView(new DrawNumberSwingView());
+        app.addView(new DrawNumberCommandLine());
     }
 }

@@ -50,6 +50,7 @@ public final class DrawNumberImpl implements DrawNumber {
 
     @Override
     public DrawResult attempt(final int n) {
+        System.out.println("\n\n" + this.remainingAttempts);
         if (this.remainingAttempts <= 0) {
             return DrawResult.YOU_LOST;
         }
