@@ -1,5 +1,7 @@
 package it.unibo.mvc;
 
+import java.lang.reflect.Constructor;
+
 import it.unibo.mvc.api.DrawNumber;
 import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
@@ -31,8 +33,23 @@ public final class LaunchApp {
     public static void main(final String... args) {
         final var model = new DrawNumberImpl();
         final DrawNumberController app = new DrawNumberControllerImpl(model);
-        app.addView(new DrawNumberSwingView());
-        app.addView(new DrawNumberSwingView());
-        app.addView(new DrawNumberCommandLine());
+        // app.addView(new DrawNumberSwingView());
+        // app.addView(new DrawNumberSwingView());
+        // app.addView(new DrawNumberCommandLine());
+
+        try {
+            Class<?> drawNumberGui = Class.forName("it.unibo.mvc.view.DrawNumberSwingView");
+            Class<?> drawNumberCli = Class.forName("it.unibo.mvc.view.DrawNumberCommandLine");
+            Constructor<?> cnt = drawNumberCli.getConstructor();
+            Constructor<?> cnt2 = drawNumberGui.getConstructor();
+
+            for (int i = 0; i < VIEWS_COUNT_PER_TYPE; i++) {
+                app.addView((DrawNumberView)cnt.newInstance());
+                app.addView((DrawNumberView)cnt2.newInstance());
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
