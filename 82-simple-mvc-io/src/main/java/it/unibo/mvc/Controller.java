@@ -7,7 +7,7 @@ import java.io.PrintStream;
 /**
  * Application controller. Performs the I/O.
  */
-public class Controller {
+public final class Controller {
 
     private static final String DEFAULT_FILE = System.getProperty("user.home") + File.separator + "output.txt";
 
