@@ -45,10 +45,15 @@ public class BadIOGUI {
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Exercise 01.01
         final JPanel pnlCenter = new JPanel();
         pnlCenter.setLayout(new BoxLayout(pnlCenter, BoxLayout.LINE_AXIS));
         canvas.add(pnlCenter, BorderLayout.CENTER);
         pnlCenter.add(write);
+
+        // Exercise 01.02
+        final JButton btnRead = new JButton("Read");
+        pnlCenter.add(btnRead);
 
         /*
          * Handlers
@@ -70,6 +75,15 @@ public class BadIOGUI {
                     e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
             }
+        });
+
+        btnRead.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(final ActionEvent arg0) {
+                System.out.println("Something on stdout");
+            }
+            
         });
     }
 
