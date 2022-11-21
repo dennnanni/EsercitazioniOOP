@@ -7,10 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Toolkit;
 import java.io.IOException;
 
 
@@ -20,12 +18,13 @@ import java.io.IOException;
  * 
  */
 public final class SimpleGUI {
-
-    private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame();
 
+    /**
+     * Builds the graphical interface of the application.
+     * @param controller the controller used to write the text on file
+     */
     public SimpleGUI(final Controller controller) {
-        
         final JPanel pnlMain = new JPanel();
         pnlMain.setLayout(new BorderLayout());
         final JTextArea txtInput = new JTextArea();
@@ -50,18 +49,20 @@ public final class SimpleGUI {
         });
     }
 
-    private void display() {
-        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        final int sw = (int) screen.getWidth();
-        final int sh = (int) screen.getHeight();
-        frame.setSize(sw / PROPORTION, sh / PROPORTION);
-        frame.setLocationByPlatform(true);
-        frame.pack();
-        frame.setVisible(true);
+    /**
+     * Gets the frame object of the GUI.
+     * @return the frame
+     */
+    public JFrame getFrame() {
+        return this.frame;
     }
 
+    /**
+     * Entry point of the program.
+     * @param args the array of arguments of the command line
+     */
     public static void main(final String[] args) {
-        new SimpleGUI(new Controller()).display();
+        SimpleGUIUtility.display(new SimpleGUI(new Controller()).getFrame());
     }
 
 }
