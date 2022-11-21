@@ -27,6 +27,14 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
             view.setObserver(this);
             view.start();
         }
+
+        try {
+            LoadConfigurationUtility.load(null);
+        } catch (Exception ex) {
+            System.out.println("dioporco\n\n\n");
+        }
+        
+
         this.model = new DrawNumberImpl(MIN, MAX, ATTEMPTS);
     }
 
