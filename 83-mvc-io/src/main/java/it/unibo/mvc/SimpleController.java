@@ -9,16 +9,16 @@ import java.util.List;
  */
 public final class SimpleController implements Controller {
 
-    private String nextString = null;
+    private String nextString;
     private final List<String> history = new ArrayList<>();
 
     @Override
-    public void setNextString(final String next) throws IllegalArgumentException {
-        
-        if (next == null) {
-            throw new IllegalArgumentException();
+    public void setNextString(final String next) {
+
+        if (next == null || next.isEmpty()) {
+            throw new IllegalArgumentException("String can't be empty");
         }
-        
+
         this.nextString = next;
     }
 
@@ -34,7 +34,12 @@ public final class SimpleController implements Controller {
 
     @Override
     public void printNextString() {
-        System.out.println(nextString);
+
+        if (this.nextString == null || this.nextString.isEmpty()) {
+            throw new IllegalStateException("Cannot print an empty string");
+        }
+
+        System.out.println(nextString); // NOPMD since it is a requested behaviour
 
         this.history.add(nextString);
         nextString = null;

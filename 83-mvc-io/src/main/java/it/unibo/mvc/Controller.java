@@ -10,9 +10,8 @@ public interface Controller {
     /**
      * Sets the next string that will be printed.
      * @param next the next string to print
-     * @throws IllegalArgumentException if the argument is null
      */
-    void setNextString(String next) throws IllegalArgumentException;
+    void setNextString(String next);
 
     /**
      * Gets the next string that will be printed.
@@ -28,7 +27,6 @@ public interface Controller {
 
     /**
      * Prints the current string.
-     * @throws IllegalStateException if the string to be printed is null
      */
-    void printNextString() throws IllegalStateException;
+    void printNextString();
 }
