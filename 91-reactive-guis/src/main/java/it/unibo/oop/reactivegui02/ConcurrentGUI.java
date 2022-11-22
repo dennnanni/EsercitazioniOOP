@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  */
 public final class ConcurrentGUI extends JFrame {
 
-    private volatile boolean incrementing;
+    private boolean incrementing;
 
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
