@@ -2,11 +2,7 @@ package it.unibo.oop.reactivegui03;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,11 +14,11 @@ import javax.swing.SwingUtilities;
  */
 public final class AnotherConcurrentGUI extends JFrame {
 
-    private boolean incrementing;
-
+    private static final int TIME_TO_WAIT = 10_000;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
 
+    private boolean incrementing = true;
     private final JLabel lblCounter = new JLabel();
 
     /**
@@ -62,9 +58,10 @@ public final class AnotherConcurrentGUI extends JFrame {
         });
 
         new Thread(new Runnable() {
+            @Override
             public void run() {
                 try {
-                    Thread.sleep(10000);
+                    Thread.sleep(TIME_TO_WAIT);
                     agent.setStop();
                     SwingUtilities.invokeAndWait(() -> btnStop.doClick());
                 } catch (InterruptedException | InvocationTargetException ex) {
@@ -84,15 +81,16 @@ public final class AnotherConcurrentGUI extends JFrame {
 
     private class Agent implements Runnable {
 
-        private int counter = 0;
-        private volatile boolean stop = false;
+        private int counter;
+        private volatile boolean stop;
 
         @Override
         public void run() {
             while (!this.stop) {
                 try {
                     counter += isIncrementing() ? 1 : -1;
-                    SwingUtilities.invokeAndWait(() -> AnotherConcurrentGUI.this.lblCounter.setText(Integer.toString(this.counter)));
+                    SwingUtilities.invokeAndWait(() -> 
+                        AnotherConcurrentGUI.this.lblCounter.setText(Integer.toString(this.counter)));
                     Thread.sleep(100);
                 } catch (InterruptedException | InvocationTargetException ex) {
                     ex.printStackTrace(); // NOPMD
