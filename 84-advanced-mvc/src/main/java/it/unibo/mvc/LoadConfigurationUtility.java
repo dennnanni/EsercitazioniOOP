@@ -1,12 +1,10 @@
 package it.unibo.mvc;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
@@ -27,7 +25,7 @@ public final class LoadConfigurationUtility {
 
         while ((line = br.readLine()) != null) {
             StringTokenizer stringTokenizer = new StringTokenizer(line, ":");
-            System.out.println(stringTokenizer.nextToken());
+            stringTokenizer.nextToken();
         }
 
         br.close();
