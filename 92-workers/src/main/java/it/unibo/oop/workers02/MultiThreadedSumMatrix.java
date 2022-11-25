@@ -3,8 +3,6 @@ package it.unibo.oop.workers02;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.crypto.spec.IvParameterSpec;
-
 public final class MultiThreadedSumMatrix implements SumMatrix {
 
     private final int nthread;
@@ -88,6 +86,5 @@ public final class MultiThreadedSumMatrix implements SumMatrix {
         return result;
 
     }
-
 
 }
