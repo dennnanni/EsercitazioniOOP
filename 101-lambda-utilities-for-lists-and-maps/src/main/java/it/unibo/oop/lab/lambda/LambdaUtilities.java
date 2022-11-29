@@ -2,10 +2,12 @@ package it.unibo.oop.lab.lambda;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -58,10 +60,9 @@ public final class LambdaUtilities {
      *         otherwise.
      */
     public static <T> List<Optional<T>> optFilter(final List<T> list, final Predicate<T> pre) {
-        /*
-         * Suggestion: consider Optional.filter
-         */
-        return null;
+        List<Optional<T>> optList = new ArrayList<>();
+        list.forEach(x -> optList.add(Optional.of(x).filter(pre)));
+        return optList;
     }
 
     /**
@@ -77,10 +78,14 @@ public final class LambdaUtilities {
      *         based on the mapping done by the function
      */
     public static <R, T> Map<R, Set<T>> group(final List<T> list, final Function<T, R> op) {
-        /*
-         * Suggestion: consider Map.merge
-         */
-        return null;
+
+        Map<R, Set<T>> map = new TreeMap<>();
+        list.forEach(x -> map.merge(op.apply(x), new HashSet<>(Set.of(x)), (k, v) -> {
+            k.addAll(v);
+            return k;
+        }));
+
+        return map;
     }
 
     /**
@@ -96,12 +101,10 @@ public final class LambdaUtilities {
      *         by the supplier
      */
     public static <K, V> Map<K, V> fill(final Map<K, Optional<V>> map, final Supplier<V> def) {
-        /*
-         * Suggestion: consider Optional.orElse
-         *
-         * Keep in mind that a map can be iterated through its forEach method
-         */
-        return null;
+
+        Map<K, V> newMap = new HashMap<>();
+        map.forEach((k, v) -> newMap.put(k, v.orElseGet(def)));
+        return newMap;
     }
 
     /**
