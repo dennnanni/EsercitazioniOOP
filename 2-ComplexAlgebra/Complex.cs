@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+
 namespace ComplexAlgebra
 {
     /// <summary>
@@ -18,5 +21,69 @@ namespace ComplexAlgebra
     public class Complex
     {
         // TODO: fill this class\
+
+        public Complex(double real, double imaginary)
+        {
+            Real = real;
+            Imaginary = imaginary;
+        }
+
+        public Complex() : this(0, 0) { }
+
+        public double Real { get; set; } = 0;
+        public double Imaginary { get; set; } = 0;
+        public double Modulus
+        {
+            get => Math.Sqrt(Math.Pow(Real, 2) + Math.Pow(Imaginary, 2));
+        }
+        public double Phase
+        {
+            get
+            {
+                if (Imaginary == 0) return 0;
+
+                return Math.Atan(Imaginary / Real);
+            }
+        }
+        public Complex Complement() => new Complex(Real, -Imaginary);
+
+        public Complex Plus(Complex c)
+        {
+            return this + c;
+        }
+
+        public Complex Minus(Complex c)
+        {
+            return this - c;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder complex = new StringBuilder();
+            complex.Append(Real != 0 ? Real : "");
+            complex.
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Complex complex &&
+                   Real == complex.Real &&
+                   Imaginary == complex.Imaginary;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Real, Imaginary);
+        }
+
+        static public Complex operator +(Complex c1, Complex c2)
+        {
+            return new Complex(c1.Real + c2.Real, c1.Imaginary + c2.Imaginary);
+        }
+
+        static public Complex operator -(Complex c1, Complex c2)
+        {
+            return new Complex(c1.Real - c2.Real, c1.Imaginary - c2.Imaginary);
+        }
     }
 }
