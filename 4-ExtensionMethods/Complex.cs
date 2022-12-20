@@ -1,6 +1,7 @@
 namespace ExtensionMethods
 {
     using System;
+    using System.Text;
 
     /// <inheritdoc cref="IComplex"/>
     public class Complex : IComplex
@@ -22,28 +23,19 @@ namespace ExtensionMethods
         /// <inheritdoc cref="IComplex.Real"/>
         public double Real
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+            get => re;
         }
 
         /// <inheritdoc cref="IComplex.Imaginary"/>
         public double Imaginary
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+            get => im;
         }
 
         /// <inheritdoc cref="IComplex.Modulus"/>
         public double Modulus
         {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
+            get => Math.Sqrt(re * re + im * im);
         }
 
         /// <inheritdoc cref="IComplex.Phase"/>
@@ -51,35 +43,40 @@ namespace ExtensionMethods
         {
             get
             {
-                throw new System.NotImplementedException();
+                if (re == 0) throw new DivideByZeroException();
+                return Math.Atan(-im / re);
             }
         }
 
         /// <inheritdoc cref="IComplex.ToString"/>
         public override string ToString()
         {
-            // TODO improve
-            return base.ToString();
+            StringBuilder complex = new StringBuilder();
+            if (re == 0 && im == 0)
+                return "0";
+
+            if (re != 0)
+            {
+                complex.Append(re.ToString());
+                if (Math.Abs(im) == 1) complex.Append(im > 0 ? "+i" : "-i");
+                else complex.Append((im > 0 ? "+" : "") + im + "i");
+            }
+            else
+            {
+                if (Math.Abs(im) == 1) complex.Append(im > 0 ? "i" : "-i");
+                else complex.Append($"{im}i");
+            }
+            return complex.ToString();
+
         }
 
         /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-        public bool Equals(IComplex other)
-        {
-            throw new System.NotImplementedException();
-        }
+        public bool Equals(IComplex other) => re == other.Real && im == other.Imaginary;
 
         /// <inheritdoc cref="object.Equals(object?)"/>
-        public override bool Equals(object obj)
-        {
-            // TODO improve
-            return base.Equals(obj);
-        }
+        public override bool Equals(object obj) => obj is Complex && Equals((Complex)obj);
 
         /// <inheritdoc cref="object.GetHashCode"/>
-        public override int GetHashCode()
-        {
-            // TODO improve
-            return base.GetHashCode();
-        }
+        public override int GetHashCode() => HashCode.Combine(Real, Imaginary);
     }
 }
