@@ -49,19 +49,10 @@ namespace DelegatesAndEvents
         }
 
         /// <inheritdoc cref="IEnumerable{T}.GetEnumerator" />
-        public IEnumerator<TItem> GetEnumerator()
-        {
-            foreach (TItem item in _items)
-            {
-                yield return item;
-            }
-        }
+        public IEnumerator<TItem> GetEnumerator() => _items.GetEnumerator();
 
         /// <inheritdoc cref="IEnumerable.GetEnumerator" />
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)_items).GetEnumerator();
 
         /// <inheritdoc cref="ICollection{T}.Add" />
         public void Add(TItem item)
