@@ -124,8 +124,7 @@ namespace DelegatesAndEvents
         /// <inheritdoc cref="object.ToString" />
         public override string ToString()
         {
-            // TODO improve
-            return base.ToString();
+            return $"[{string.Join(",", _items)}]";
         }
     }
 }
