@@ -149,7 +149,7 @@ namespace OperatorsOverloading
         /// <returns>the result list.</returns>
         public static List<TValue> operator +(List<TValue> list1, List<TValue> list2)
         {
-            throw new NotImplementedException();
+            return List.Append(list1, list2);
         }
 
         /// <summary>
@@ -161,7 +161,14 @@ namespace OperatorsOverloading
         /// <returns>the result list.</returns>
         public static List<TValue> operator -(List<TValue> list1, List<TValue> list2)
         {
-            throw new NotImplementedException();
+            List<TValue> output = List.Nil<TValue>();
+            foreach (TValue elem in list1.ToFlat())
+            {
+                if (!list2.ToFlat().Contains(elem))
+                    output = List.Append(output, List.Of(elem));
+            }
+
+            return output;
         }
 
         /// <summary>
